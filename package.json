@@ -1,6 +1,6 @@
 {
-  "name": "vite-tailwind-starter",
-  "description": "NoJS Vite + Tailwind CSS Starter",
+  "name": "tailwindcss-cli-starter",
+  "description": "NoJS Tailwind CSS CLI Starter",
   "version": "0.0.0",
   "keywords": [
     "template",
@@ -8,28 +8,14 @@
     "tailwind",
     "tailwindcss",
     "tailwind-css",
-    "vite",
-    "vitejs",
-    "vite-template",
-    "vitejs-template",
-    "vite-tailwind"
+    "tailwindcss-cli"
   ],
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "format": "prettier --write './src/**/*.{html,js,jsx,ts,tsx}'"
+    "dev": "npx @tailwindcss/cli -i ./src/style.css -o ./src/output.css --watch",
+    "build": "npx @tailwindcss/cli -i ./src/style.css -o ./dist/output.css --minify && cp -r src/index.html dist/ && cp -r src/public dist/"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.19",
-    "postcss": "^8.4.38",
-    "prettier": "^3.3.2",
-    "prettier-plugin-tailwindcss": "^0.6.3",
-    "tailwindcss": "^3.4.4",
-    "vite": "^5.2.13"
-  },
-  "dependencies": {
-    "cssnano": "^7.1.2"
+    "tailwindcss": "^4.1.17"
   }
 }
