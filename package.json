@@ -1,21 +1,6 @@
 {
-  "name": "tailwindcss-cli-starter",
-  "description": "NoJS Tailwind CSS CLI Starter",
-  "version": "0.0.0",
-  "keywords": [
-    "template",
-    "scaffold",
-    "tailwind",
-    "tailwindcss",
-    "tailwind-css",
-    "tailwindcss-cli"
-  ],
-  "type": "module",
-  "scripts": {
-    "dev": "npx @tailwindcss/cli -i ./src/style.css -o ./src/output.css --watch",
-    "build": "npx @tailwindcss/cli -i ./src/style.css -o ./dist/output.css --minify && cp -r src/index.html dist/"
-  },
-  "devDependencies": {
-    "tailwindcss": "^4.1.17"
-  }
+  "name": "florinpopa.dev",
+  "description": "Personal portfolio — single static HTML file",
+  "version": "1.0.0",
+  "private": true
 }
