@@ -2,13 +2,27 @@
 
 ## Project Overview
 
-Personal portfolio for Florin Popa. Single static HTML file, zero dependencies, zero build step. Brutalist web design matching florinsays.com.
+Personal portfolio + blog for Florin Popa. Built with Astro, mirrors florinsays.com architecture. Brutalist web design.
 
 ## Architecture
 
-- `src/index.html` — the entire site (HTML + inline CSS)
-- No build system, no npm scripts, no external dependencies
-- Deploy by serving `src/index.html` (or copy to root)
+- **Framework**: Astro 5 with MDX, RSS, sitemap
+- `src/pages/index.astro` — homepage (bio → posts → connect links)
+- `src/pages/[slug].astro` — dynamic post/page routes
+- `src/pages/rss.xml.js` — RSS feed
+- `src/layouts/BlogPost.astro` — post layout with dates + structured data
+- `src/components/` — BaseHead, Footer, FormattedDate
+- `src/content/blog/` — MD/MDX posts (content collections)
+- `src/content.config.ts` — collection schema (title, description, date, last, heroImage)
+- `src/styles/global.css` — all base styles
+- `src/consts.ts` — SITE_TITLE, SITE_DESCRIPTION
+- `public/` — favicon.svg, robots.txt
+
+## Content Collections
+
+- Posts have `date` (sorted reverse-chronological on homepage)
+- Pages have no `date` (listed separately below posts)
+- Prefix filenames with `_` to exclude from build
 
 ## Design
 
@@ -18,16 +32,15 @@ Personal portfolio for Florin Popa. Single static HTML file, zero dependencies, 
 - 600px max-width column, 19px base font, 1.75 line-height
 - Links always underlined, `focus-visible` outline for a11y
 - No transitions, no animations, no border-radius, no external fonts
-- Zero external requests
 
-## Content
+## Commands
 
-- Name, haiku, philosophy, three skill labels, connect links, footer
-- Links: LinkedIn, GitHub, Twitter, Email
+- `npm run dev` — dev server
+- `npm run build` — static build to `dist/`
+- `npm run preview` — preview build
 
 ## Constraints
 
-- No JavaScript
+- No client-side JavaScript
 - No external CSS/fonts/CDN
-- Single file, no build step
 - Keep brutalist: no decoration, no gradients, no shadows

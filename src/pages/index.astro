@@ -1,0 +1,177 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const all = await getCollection('blog');
+const posts = all
+	.filter((p) => p.data.date)
+	.sort((a, b) => b.data.date!.valueOf() - a.data.date!.valueOf());
+const pages = all.filter((p) => !p.data.date);
+
+function shortDate(d: Date) {
+	return d.toISOString().slice(0, 10);
+}
+---
+
+<!doctype html>
+<html lang="en" style="color-scheme: dark">
+	<head>
+		<BaseHead title={`${SITE_TITLE} — Backend Engineer`} description={SITE_DESCRIPTION} />
+		<style>
+			.bio {
+				margin-bottom: 3rem;
+			}
+
+			.post-list {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+			.post-list li {
+				margin-bottom: 0.6rem;
+				padding-left: 0;
+			}
+			.post-list li a {
+				display: flex;
+				align-items: baseline;
+				gap: 1rem;
+				text-decoration: none;
+			}
+			.post-list li a:hover .title,
+			.post-list li a:focus-visible .title {
+				text-decoration-color: var(--text-bright);
+			}
+			.date {
+				font-family: var(--font-mono);
+				color: var(--text-muted);
+				font-size: 0.7rem;
+				flex-shrink: 0;
+				width: 5.5rem;
+			}
+			.title {
+				font-family: var(--font-sans);
+				margin: 0;
+				font-size: 1rem;
+				font-weight: 500;
+				color: var(--text-bright);
+				line-height: 1.4;
+				text-decoration: underline;
+				text-decoration-color: var(--text-muted);
+				text-underline-offset: 3px;
+				text-decoration-thickness: 1px;
+			}
+			.page-list {
+				list-style: none;
+				margin: 2rem 0 0;
+				padding: 0;
+			}
+			.page-list li {
+				margin-bottom: 0.6rem;
+				padding-left: 0;
+			}
+			.page-list li a {
+				display: flex;
+				align-items: baseline;
+				text-decoration: none;
+				padding-left: calc(5.5rem + 1rem);
+			}
+			.page-list li a:hover .title,
+			.page-list li a:focus-visible .title {
+				text-decoration-color: var(--text-bright);
+			}
+
+			section {
+				margin-bottom: 3rem;
+			}
+
+			.links {
+				list-style: none;
+				padding: 0;
+			}
+			.links li {
+				margin-bottom: 0.5rem;
+				padding-left: 0;
+			}
+
+			@media (max-width: 600px) {
+				.post-list li a {
+					flex-direction: column;
+					gap: 0.1rem;
+				}
+				.date {
+					width: auto;
+				}
+				.page-list li a {
+					padding-left: 0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<section class="bio">
+				<p>
+					Backend engineer with 14+ years building and scaling Ruby on
+					Rails applications.
+				</p>
+				<p>
+					I believe in the power of mindful optimization —
+					transforming hours into minutes, chaos into clarity.
+				</p>
+				<p>
+					From Bucharest, Romania, crafting systems that balance
+					performance with elegance.
+				</p>
+			</section>
+
+			{(posts.length > 0 || pages.length > 0) && (
+				<section>
+					{posts.length > 0 && (
+						<ul class="post-list">
+							{posts.map((post) => (
+								<li>
+									<a href={`/${post.id}/`}>
+										<span class="date">{shortDate(post.data.date!)}</span>
+										<span class="title">{post.data.title}</span>
+									</a>
+								</li>
+							))}
+						</ul>
+					)}
+					{pages.length > 0 && (
+						<ul class="page-list">
+							{pages.map((page) => (
+								<li>
+									<a href={`/${page.id}/`}>
+										<span class="title">{page.data.title}</span>
+									</a>
+								</li>
+							))}
+						</ul>
+					)}
+				</section>
+			)}
+
+			<section>
+				<h2>Connect</h2>
+				<ul class="links">
+					<li>
+						<a href="https://www.linkedin.com/in/florin-popa-08405566/">LinkedIn</a>
+					</li>
+					<li>
+						<a href="https://github.com/FlorinPopaCodes">GitHub</a>
+					</li>
+					<li>
+						<a href="https://twitter.com/FlorinSays">Twitter</a>
+					</li>
+					<li>
+						<a href="mailto:pp.flrn@gmail.com">pp.flrn@gmail.com</a>
+					</li>
+				</ul>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

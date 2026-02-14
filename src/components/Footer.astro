@@ -1,0 +1,26 @@
+---
+import { SITE_TITLE } from '../consts';
+---
+
+<footer>
+	<p>&copy; <a href="/">{SITE_TITLE}</a> &middot; No cookies.</p>
+</footer>
+<style>
+	footer {
+		max-width: 600px;
+		margin: 0 auto;
+		padding: 0 1rem 4rem;
+		font-size: 0.8rem;
+		color: var(--text-muted);
+	}
+	footer p {
+		margin: 0;
+		padding-top: 1rem;
+		border-top: 1px solid var(--text-muted);
+	}
+	@media (max-width: 600px) {
+		footer {
+			padding: 0 1.25rem 3rem;
+		}
+	}
+</style>

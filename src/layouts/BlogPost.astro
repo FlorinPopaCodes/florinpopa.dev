@@ -1,0 +1,84 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import { SITE_TITLE } from '../consts';
+
+type Props = CollectionEntry<'blog'>['data'];
+
+const { title, description, date, last } = Astro.props;
+const showUpdated =
+	last && (!date || last.toISOString() !== date.toISOString());
+
+const articleSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'Article',
+	headline: title,
+	description: description,
+	...(date && { datePublished: date.toISOString() }),
+	...(last && { dateModified: last.toISOString() }),
+	url: new URL(Astro.url.pathname, Astro.site),
+	publisher: {
+		'@type': 'Person',
+		name: SITE_TITLE,
+		url: Astro.site,
+	},
+};
+---
+
+<!doctype html>
+<html lang="en" style="color-scheme: dark">
+	<head>
+		<BaseHead title={title} description={description} />
+		<script
+			type="application/ld+json"
+			set:html={JSON.stringify(articleSchema)}
+		/>
+		<style>
+			article h1 {
+				margin-bottom: 2rem;
+				font-size: 3rem;
+			}
+			.post-footer {
+				font-family: var(--font-mono);
+				color: var(--text-muted);
+				font-size: 0.7rem;
+				margin-top: 3rem;
+				padding-top: 2rem;
+				border-top: 1px solid var(--border);
+			}
+			.post-footer span {
+				display: block;
+			}
+			.post-footer .updated {
+				margin-top: 0.3rem;
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<article>
+				<h1>{title}</h1>
+				<slot />
+				{
+					(date || showUpdated) && (
+						<div class="post-footer">
+							{date && (
+								<span>
+									Published <FormattedDate date={date} />
+								</span>
+							)}
+							{showUpdated && (
+								<span class="updated">
+									Updated <FormattedDate date={last!} />
+								</span>
+							)}
+						</div>
+					)
+				}
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>
