@@ -1,5 +1,5 @@
 ---
-title: "educhk — Academic Domain Checker for the Edge"
+title: "Academic Domain Checker for the Edge, educhk"
 description: "A fast lightweight npm package and Cloudflare Worker that checks if a domain belongs to 25,000+ educational institutions."
 date: 2026-02-19
 ---
@@ -14,6 +14,8 @@ As I was trying to build using Cloudflare Workers, I used an existing package to
 
 My problem was that there wasn't a package on npmjs.com that I was happy with: all were either stale or unmaintained. So I built and published one.
 
+I give you "*educhk*".
+
 This package differs from others: it exports only two methods. Most developers either check if an email is from an academic domain or flag domains that have historically exploited student discounts.
 
 p50 under 1 millisecond, p95 around 4 milliseconds.
@@ -22,6 +24,6 @@ I've also decided to leave a public API available as this costs me almost nothin
 
 ## Links
 
-- [GitHub](https://github.com/FlorinPopaCodes/educhk)
-- [npm](https://www.npmjs.com/package/educhk)
-- [Live API](https://educhk.florin-popa-codes.workers.dev/stanford.edu)
+- [educhk on GitHub](https://github.com/FlorinPopaCodes/educhk)
+- [educhk on npm](https://www.npmjs.com/package/educhk)
+- [educhk on Cloudflare Workers](https://educhk.florin-popa-codes.workers.dev/stanford.edu)
