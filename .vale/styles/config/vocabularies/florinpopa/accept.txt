@@ -1,0 +1,50 @@
+# Technical terms specific to this blog — never flag these
+
+# Project-specific
+educhk
+FlorinPopa
+
+# Platform / tooling
+Cloudflare
+Workers
+Durable Objects
+R2
+KV
+Wrangler
+MDX
+npm
+npmjs
+npx
+GitHub
+LinkedIn
+Astro
+astrojs
+
+# Data structures / CS terms
+trie
+bloom filter
+O\(1\)
+O\(n\)
+O\(log n\)
+
+# Web / backend
+API
+REST
+JSON-LD
+OG
+RSS
+CDN
+DNS
+URL
+
+# Languages / frameworks
+Ruby
+Rails
+TypeScript
+JavaScript
+CSS
+HTML
+Markdown
+
+# Other proper nouns
+Stanford

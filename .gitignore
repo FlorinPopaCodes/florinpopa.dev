@@ -13,6 +13,10 @@ dist-ssr
 *.local
 .astro
 
+# Vale downloaded packages (run `vale sync` to restore)
+.vale/styles/write-good/
+.vale/styles/proselint/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
