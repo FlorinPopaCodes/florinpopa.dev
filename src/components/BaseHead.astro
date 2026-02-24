@@ -39,11 +39,11 @@ const isHome = Astro.url.pathname === '/';
 <meta property="og:description" content={description} />
 {image && <meta property="og:image" content={new URL(image.src, Astro.url)} />}
 
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={Astro.url} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-{image && <meta property="twitter:image" content={new URL(image.src, Astro.url)} />}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={Astro.url} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+{image && <meta name="twitter:image" content={new URL(image.src, Astro.url)} />}
 
 {isHome && (
 	<script type="application/ld+json" set:html={JSON.stringify({
