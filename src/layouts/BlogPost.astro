@@ -36,6 +36,18 @@ const articleSchema = {
 			set:html={JSON.stringify(articleSchema)}
 		/>
 		<style>
+			.back {
+				font-family: var(--font-mono);
+				font-size: 0.7rem;
+				color: var(--text-muted);
+				display: block;
+			}
+			.back:first-child {
+				margin-bottom: 2rem;
+			}
+			.back:last-child {
+				margin-top: 2rem;
+			}
 			article h1 {
 				margin-bottom: 2rem;
 				font-size: 3rem;
@@ -58,6 +70,7 @@ const articleSchema = {
 	</head>
 	<body>
 		<main>
+			<a href="/" class="back">&larr; florinpopa.dev</a>
 			<article>
 				<h1>{title}</h1>
 				<slot />
@@ -78,6 +91,7 @@ const articleSchema = {
 					)
 				}
 			</article>
+			<a href="/" class="back">&larr; florinpopa.dev</a>
 		</main>
 		<Footer />
 	</body>
