@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://florinpopa.dev/sitemap-index.xml
