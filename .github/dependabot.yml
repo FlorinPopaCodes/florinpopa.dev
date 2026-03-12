@@ -1,9 +1,20 @@
 version: 2
 updates:
-  - package-ecosystem: npm
+  - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: monthly
+      interval: "weekly"
+    open-pull-requests-limit: 10
     allow:
-      - dependency-type: production
-    open-pull-requests-limit: 0
+      - dependency-type: "production"
+    groups:
+      security:
+        applies-to: "security-updates"
+        patterns:
+          - "*"
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - "version-update:semver-major"
+          - "version-update:semver-minor"
+          - "version-update:semver-patch"
