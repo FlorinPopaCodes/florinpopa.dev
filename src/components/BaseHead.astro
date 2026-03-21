@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import type { ImageMetadata } from 'astro';
+import { ClientRouter } from 'astro:transitions';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 interface Props {
@@ -26,6 +27,7 @@ const isHome = Astro.url.pathname === '/';
 	href={new URL('rss.xml', Astro.site)}
 />
 <meta name="generator" content={Astro.generator} />
+<ClientRouter />
 
 <link rel="canonical" href={canonicalURL} />
 

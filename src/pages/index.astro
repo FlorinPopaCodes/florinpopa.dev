@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
+import PaperBackground from "../components/PaperBackground.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 
 const all = await getCollection("blog");
@@ -52,7 +53,7 @@ function shortDate(d: Date) {
             .date {
                 font-family: var(--font-mono);
                 color: var(--text-muted);
-                font-size: 0.7rem;
+                font-size: 0.75rem;
                 flex-shrink: 0;
                 width: 5.5rem;
             }
@@ -116,6 +117,7 @@ function shortDate(d: Date) {
         </style>
     </head>
     <body>
+        <PaperBackground />
         <main>
             <h1 class="sr-only">{SITE_TITLE}</h1>
             <section class="bio">
@@ -189,5 +191,6 @@ function shortDate(d: Date) {
             </section>
         </main>
         <Footer />
+        
     </body>
 </html>

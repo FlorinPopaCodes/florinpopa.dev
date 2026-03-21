@@ -1,0 +1,72 @@
+---
+---
+
+<div id="paper-bg" aria-hidden="true" transition:persist="paper-bg"></div>
+
+<style>
+	#paper-bg {
+		position: fixed;
+		inset: 0;
+		z-index: -1;
+		pointer-events: none;
+		width: 100vw;
+		height: 100vh;
+	}
+</style>
+
+<script>
+	import {
+		ShaderMount,
+		grainGradientFragmentShader,
+		getShaderColorFromString,
+		getShaderNoiseTexture,
+		defaultPatternSizing,
+	} from '@paper-design/shaders';
+
+	const el = document.getElementById('paper-bg');
+	if (el && !el.querySelector('canvas')) {
+		const noiseImage = getShaderNoiseTexture();
+		const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		const init = () => {
+			try {
+				const speed = reducedMotion ? 0.001 : 0.5;
+				const mount = new ShaderMount(el, grainGradientFragmentShader, {
+					u_colorBack: getShaderColorFromString('#0c0c0c'),
+					u_colors: [
+						getShaderColorFromString('#241a28'),
+						getShaderColorFromString('#1a2420'),
+						getShaderColorFromString('#2a1f18'),
+					],
+					u_colorsCount: 3,
+					u_shape: 0,
+					u_softness: 0.9,
+					u_intensity: 0.2,
+					u_noise: 0.1,
+					u_noiseTexture: noiseImage,
+					u_fit: 0,
+					u_scale: defaultPatternSizing.scale,
+					u_rotation: 180,
+					u_offsetX: defaultPatternSizing.offsetX,
+					u_offsetY: defaultPatternSizing.offsetY,
+					u_originX: defaultPatternSizing.originX,
+					u_originY: defaultPatternSizing.originY,
+					u_worldWidth: defaultPatternSizing.worldWidth,
+					u_worldHeight: defaultPatternSizing.worldHeight,
+				}, undefined, speed, 0, 2, 1920 * 1080);
+
+				if (reducedMotion) {
+					requestAnimationFrame(() => mount.setSpeed(0));
+				}
+			} catch (e) {
+				console.error('Paper shader failed:', e);
+			}
+		};
+
+		if (noiseImage?.complete && noiseImage.naturalWidth > 0) {
+			init();
+		} else {
+			noiseImage?.addEventListener('load', init);
+		}
+	}
+</script>
